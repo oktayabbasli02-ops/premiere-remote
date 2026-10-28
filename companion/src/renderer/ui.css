@@ -1,0 +1,38 @@
+:root {
+  --bg: #f6f6f7; --card: #ffffff; --fg: #1d1d1f; --muted: #6b6b70; --line: #e2e2e6;
+  --accent: #5b4cf0; --danger: #c62828; --ok: #1b8a4b; --warn: #b26a00;
+}
+@media (prefers-color-scheme: dark) {
+  :root { --bg: #17171a; --card: #222226; --fg: #ececf0; --muted: #9a9aa2; --line: #34343a; --accent: #8b80ff; --danger: #ff6b6b; --ok: #4cc785; --warn: #ffb547; }
+}
+* { box-sizing: border-box; }
+body { margin: 0; padding: 16px; font: 14px/1.45 "Segoe UI", system-ui, sans-serif; background: var(--bg); color: var(--fg); }
+header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+h1 { font-size: 18px; margin: 0; }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; margin-bottom: 12px; }
+.label { font-size: 12px; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); margin-bottom: 6px; }
+.muted { color: var(--muted); }
+.row { display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+button { font: inherit; padding: 7px 12px; border-radius: 7px; border: 1px solid var(--line); background: var(--card); color: var(--fg); cursor: pointer; }
+button.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+button.danger { color: var(--danger); border-color: var(--danger); }
+button.ok { background: var(--ok); border-color: var(--ok); color: #fff; }
+.hidden { display: none !important; }
+.badge { padding: 3px 10px; border-radius: 999px; font-weight: 600; font-size: 12px; }
+.badge.off { background: var(--line); color: var(--muted); }
+.badge.on { background: var(--ok); color: #fff; }
+.badge.live { background: var(--danger); color: #fff; }
+.pairing { margin-top: 12px; text-align: center; }
+.code { font: 600 34px/1.2 "Cascadia Mono", Consolas, monospace; letter-spacing: .12em; }
+.qr { display: flex; justify-content: center; margin: 8px 0; }
+.qr img { background: #fff; padding: 6px; border-radius: 6px; }
+.approval { border: 2px solid var(--accent); background: var(--card); border-radius: 10px; padding: 12px; margin-bottom: 12px; }
+.approval .keyhash { font-family: Consolas, monospace; font-weight: 600; }
+.approval .buttons { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+.device { display: flex; justify-content: space-between; align-items: center; padding: 6px 0; border-top: 1px solid var(--line); gap: 8px; flex-wrap: wrap; }
+.device:first-child { border-top: 0; }
+label { display: block; margin: 6px 0; }
+label input[type=url], label input[type=password], label input[type=number], label select { display: block; width: 100%; margin-top: 3px; padding: 6px 8px; border-radius: 6px; border: 1px solid var(--line); background: var(--bg); color: var(--fg); font: inherit; }
+label.check { display: flex; align-items: center; gap: 6px; }
+.warn { color: var(--warn); }
+.stats { font-family: Consolas, monospace; font-size: 12px; }

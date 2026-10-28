@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:">
+  <title>Premiere Remote</title>
+  <link rel="stylesheet" href="ui.css">
+</head>
+<body>
+  <header>
+    <h1>Premiere Remote</h1>
+    <span id="badge" class="badge off">OFF</span>
+  </header>
+
+  <section id="approvals"></section>
+
+  <section class="card">
+    <div class="row">
+      <div>
+        <div class="label">Remote access</div>
+        <div id="sigState" class="muted">offline</div>
+      </div>
+      <button id="toggle" class="primary">Enable remote access</button>
+    </div>
+    <div id="pairing" class="pairing hidden">
+      <div class="label">Pairing code (single use)</div>
+      <div id="code" class="code"></div>
+      <div id="codeExp" class="muted"></div>
+      <div id="qr" class="qr"></div>
+      <button id="cancelCode">Hide code</button>
+    </div>
+    <button id="newCode" class="hidden">Pair a new phone</button>
+  </section>
+
+  <section class="card" id="sessionCard">
+    <div class="label">Session</div>
+    <div id="session" class="muted">No phone connected.</div>
+    <button id="endSession" class="danger hidden">Disconnect phone</button>
+  </section>
+
+  <section class="card">
+    <div class="label">Premiere</div>
+    <div id="premiere" class="muted"></div>
+  </section>
+
+  <section class="card">
+    <div class="label">Trusted phones</div>
+    <div id="devices"></div>
+  </section>
+
+  <section class="card">
+    <div class="label">Settings</div>
+    <label>Signaling server URL <input id="serverUrl" type="url" placeholder="https://signal.example.com"></label>
+    <label>Registration key (if your server requires one) <input id="registrationKey" type="password" autocomplete="off"></label>
+    <label>Stream quality
+      <select id="quality">
+        <option value="auto">Auto</option>
+        <option value="saver">540p · 24 fps (mobile data)</option>
+        <option value="responsive">720p · 30 fps</option>
+        <option value="balanced">1080p · 30 fps</option>
+        <option value="quality">1080p · 60 fps</option>
+      </select>
+    </label>
+    <label>Capture
+      <select id="captureMode">
+        <option value="window">Premiere window</option>
+        <option value="display">Display containing Premiere</option>
+      </select>
+    </label>
+    <label class="check"><input id="allowOutside" type="checkbox"> Allow phone input outside Premiere windows</label>
+    <label>Save reminder (minutes, 0 = off) <input id="saveReminder" type="number" min="0" max="120"></label>
+    <div class="row">
+      <button id="saveSettings">Save settings</button>
+      <button id="openConfig">Open config folder</button>
+    </div>
+  </section>
+
+  <section id="warnings"></section>
+
+  <script src="../../node_modules/qrcode-generator/dist/qrcode.js"></script>
+  <script src="ui.js"></script>
+</body>
+</html>

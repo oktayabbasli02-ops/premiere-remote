@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="conn" class="banner warn">Connecting to the Premiere Remote companion…</div>
+
+  <div id="approvals"></div>
+
+  <div class="card">
+    <div class="row">
+      <div>
+        <div class="label">Remote access</div>
+        <div id="sig" class="muted">—</div>
+      </div>
+      <sp-button id="toggle" variant="cta">Enable</sp-button>
+    </div>
+    <div id="pairing" class="pairing hidden">
+      <div class="label">Enter this code in the phone app</div>
+      <div id="code" class="code"></div>
+      <div id="exp" class="muted"></div>
+      <div id="qr" class="qr"></div>
+      <sp-button id="hideCode" variant="secondary" quiet>Hide code</sp-button>
+    </div>
+    <sp-button id="newCode" variant="secondary" class="hidden">Pair a new phone</sp-button>
+  </div>
+
+  <div class="card">
+    <div class="label">Session</div>
+    <div id="session" class="muted">No phone connected.</div>
+    <sp-button id="disconnect" variant="warning" class="hidden">Disconnect phone</sp-button>
+  </div>
+
+  <div class="card">
+    <div class="label">Trusted phones</div>
+    <div id="devices" class="muted">—</div>
+  </div>
+
+  <div id="warnings"></div>
+
+  <script src="vendor/qrcode.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>

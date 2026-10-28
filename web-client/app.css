@@ -1,0 +1,76 @@
+:root {
+  --bg: #141417; --panel: #1e1e22; --card: #26262b; --fg: #ececf0; --muted: #9a9aa2;
+  --accent: #8b80ff; --accent-bg: #d0c8ff; --accent-fg: #251e5c; --danger: #8e1b1b; --ok: #1b8a4b; --warn-bg: #5a4300; --warn-fg: #ffd57a;
+  --sat: env(safe-area-inset-top); --sab: env(safe-area-inset-bottom); --sal: env(safe-area-inset-left); --sar: env(safe-area-inset-right);
+}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { margin: 0; height: 100%; background: var(--bg); color: var(--fg); font: 16px/1.4 -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif; overscroll-behavior: none; }
+body { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+.hidden { display: none !important; }
+.muted { color: var(--muted); }
+.mono { font-family: ui-monospace, Menlo, Consolas, monospace; }
+.warn { color: #ffb547; }
+.hint { color: var(--muted); font-size: 13px; }
+h1 { font-size: 24px; font-weight: 600; margin: 8px 0; }
+button { font: inherit; border: 0; border-radius: 999px; padding: 10px 16px; min-height: 44px; color: var(--accent-fg); background: var(--accent-bg); cursor: pointer; touch-action: manipulation; }
+button:disabled { opacity: .4; }
+button.primary { background: var(--accent-bg); }
+button.secondary { background: transparent; color: var(--accent); border: 1px solid #555; }
+button.text { background: transparent; color: var(--accent); padding: 8px 10px; }
+button.danger { background: var(--danger); color: #fff; }
+button.ok { background: var(--ok); color: #fff; }
+.row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin: 8px 0; }
+label { display: block; margin: 10px 0; color: var(--muted); font-size: 14px; }
+input, textarea { display: block; width: 100%; margin-top: 4px; padding: 12px; border-radius: 10px; border: 1px solid #444; background: #0e0e10; color: var(--fg); font: inherit; -webkit-user-select: text; user-select: text; }
+input.code { font: 600 28px ui-monospace, Menlo, Consolas, monospace; letter-spacing: 4px; }
+
+.screen { position: fixed; inset: 0; padding: calc(16px + var(--sat)) calc(16px + var(--sar)) calc(16px + var(--sab)) calc(16px + var(--sal)); overflow: auto; }
+.card { background: var(--card); border-radius: 14px; padding: 14px; margin: 10px 0; }
+.card .name { font-size: 18px; }
+
+#session { padding: 0; display: flex; flex-direction: column; overflow: hidden; }
+.bar { display: flex; align-items: center; gap: 6px; background: var(--panel); padding: calc(4px + var(--sat)) calc(8px + var(--sar)) 4px calc(8px + var(--sal)); }
+.chip { font-size: 11px; font-weight: 600; padding: 3px 7px; border-radius: 4px; background: #5b4cf0; color: #fff; white-space: nowrap; }
+.chip.live { background: var(--ok); }
+.chip.recon { background: #b26a00; }
+.chip.bad { background: #c62828; }
+.chip.off { background: #6b6b70; }
+.title { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 14px; }
+.toggle { background: transparent; color: var(--fg); border: 1px solid #777; border-radius: 10px; padding: 6px 12px; min-height: 36px; }
+
+#stage { position: relative; flex: 1; min-height: 0; background: #000; overflow: hidden; touch-action: none; }
+#video { position: absolute; left: 0; top: 0; width: 100%; height: 100%; object-fit: contain; transform-origin: 0 0; pointer-events: none; }
+.overlay { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); max-width: 80%; background: rgba(0,0,0,.8); padding: 14px; border-radius: 8px; text-align: center; }
+.overlay:empty { display: none; }
+.banners { position: absolute; left: 6px; top: 6px; right: 6px; display: flex; flex-direction: column; align-items: flex-start; gap: 4px; pointer-events: none; }
+.banners .b { background: rgba(90,67,0,.92); color: var(--warn-fg); font-size: 12px; padding: 4px 8px; border-radius: 4px; }
+.banners button { pointer-events: auto; min-height: 32px; padding: 4px 12px; background: rgba(0,0,0,.8); color: var(--accent); }
+.stats { position: absolute; left: 6px; bottom: 6px; margin: 0; background: rgba(0,0,0,.7); font: 10px/1.3 ui-monospace, Menlo, Consolas, monospace; padding: 6px; border-radius: 6px; pointer-events: none; white-space: pre-wrap; max-width: calc(100% - 12px); }
+.ack { position: absolute; left: 50%; bottom: 8px; transform: translateX(-50%); max-width: 92%; color: #fff; padding: 6px 12px; border-radius: 6px; font-size: 13px; pointer-events: none; }
+.ack.ok { background: rgba(27,138,75,.95); } .ack.sent { background: rgba(58,58,128,.95); } .ack.err { background: rgba(198,40,40,.95); }
+.sound { position: absolute; right: 8px; bottom: 8px; min-height: 36px; padding: 6px 12px; background: rgba(0,0,0,.7); color: #fff; font-size: 13px; }
+
+.controls { display: flex; gap: 6px; background: var(--panel); padding: 6px calc(6px + var(--sar)) calc(6px + var(--sab)) calc(6px + var(--sal)); }
+.buttons { flex: 1; display: flex; flex-wrap: wrap; align-content: flex-start; gap: 4px; max-height: 34vh; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+.buttons button { padding: 10px 14px; font-size: 14px; }
+.buttons button.danger { background: var(--danger); color: #fff; }
+.buttons .note { width: 100%; color: var(--muted); font-size: 10px; }
+.jogcol { display: flex; flex-direction: column; align-items: center; }
+.jog { width: 120px; height: 120px; touch-action: none; }
+@media (orientation: landscape) and (max-height: 500px) {
+  #session { flex-direction: row; flex-wrap: wrap; }
+  .bar { width: 100%; }
+  #stage { height: calc(100% - 48px); }
+  .controls { flex-direction: column; width: 38%; height: calc(100% - 48px); overflow-y: auto; }
+  .buttons { max-height: none; }
+  .jog { width: 100px; height: 100px; }
+}
+
+.sheet { position: fixed; left: 0; right: 0; bottom: 0; background: var(--card); border-radius: 16px 16px 0 0; padding: 12px calc(12px + var(--sar)) calc(12px + var(--sab)) calc(12px + var(--sal)); display: flex; flex-direction: column; gap: 6px; max-height: 80%; overflow: auto; z-index: 10; box-shadow: 0 -8px 30px rgba(0,0,0,.6); }
+.sheet > button { background: transparent; color: var(--fg); text-align: left; border-radius: 10px; }
+.sheet > button.danger { color: #ff8a8a; }
+.sheet > button.text { color: var(--accent); text-align: center; }
+.keys { display: flex; flex-wrap: wrap; gap: 4px; }
+.keys button { background: transparent; color: var(--fg); border: 1px solid #555; border-radius: 10px; padding: 8px 12px; }
+.keys button.on, #muteKind button.on { background: var(--accent-bg); color: var(--accent-fg); }
+#muteKind button { background: transparent; color: var(--fg); border: 1px solid #555; }

@@ -1,0 +1,52 @@
+{
+  "name": "premiere-remote-companion",
+  "productName": "Premiere Remote",
+  "version": "0.1.0",
+  "description": "Windows companion for Premiere Remote: capture, WebRTC streaming, input and Premiere panel bridge.",
+  "type": "module",
+  "main": "src/main/main.js",
+  "license": "MIT",
+  "author": "Premiere Remote",
+  "scripts": {
+    "start": "electron .",
+    "test": "node --test \"test/*.test.js\"",
+    "dist": "electron-builder --win nsis",
+    "dist:dir": "electron-builder --win dir"
+  },
+  "dependencies": {
+    "@premiere-remote/shared": "file:../shared",
+    "koffi": "^2.12.0",
+    "qrcode-generator": "^2.0.4",
+    "ws": "^8.22.0"
+  },
+  "devDependencies": {
+    "electron": "45.1.0",
+    "electron-builder": "^26.0.12"
+  },
+  "build": {
+    "appId": "com.premiereremote.companion",
+    "productName": "Premiere Remote",
+    "files": [
+      "src/**/*",
+      "package.json",
+      "node_modules/**/*"
+    ],
+    "asarUnpack": [
+      "node_modules/koffi/**/*"
+    ],
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "requestedExecutionLevel": "asInvoker"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true
+    }
+  },
+  "allowScripts": {
+    "koffi@2.16.3": true
+  }
+}

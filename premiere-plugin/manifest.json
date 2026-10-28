@@ -1,0 +1,27 @@
+{
+  "manifestVersion": 5,
+  "id": "com.premiereremote.panel",
+  "name": "Premiere Remote",
+  "version": "0.1.0",
+  "main": "index.html",
+  "host": {
+    "app": "premierepro",
+    "minVersion": "26.3.0"
+  },
+  "entrypoints": [
+    {
+      "type": "panel",
+      "id": "premiereRemotePanel",
+      "label": { "default": "Premiere Remote" },
+      "minimumSize": { "width": 240, "height": 260 },
+      "maximumSize": { "width": 2000, "height": 2000 },
+      "preferredDockedSize": { "width": 320, "height": 520 },
+      "preferredFloatingSize": { "width": 320, "height": 560 }
+    }
+  ],
+  "requiredPermissions": {
+    "network": {
+      "domains": "all"
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{$PR_DOMAIN} {
+	encode gzip
+	# Caddy obtains and renews the TLS certificate automatically (Let's Encrypt).
+	reverse_proxy signal:8787
+	log {
+		output stdout
+		# request URIs carry no secrets (codes/tokens are in POST bodies / WS frames)
+	}
+}

@@ -1,0 +1,44 @@
+# Signaling (behind Caddy TLS) + coturn on one small VPS.
+# Usage: cp .env.example .env && edit && docker compose up -d
+services:
+  signal:
+    build:
+      context: ..
+      dockerfile: server/Dockerfile
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      HOST: 0.0.0.0
+      PORT: 8787
+      PR_TRUST_PROXY: "1"
+      PR_DATA_FILE: /data/store.json
+    volumes:
+      - signal-data:/data
+    expose:
+      - "8787"
+
+  caddy:
+    image: caddy:2.8
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      PR_DOMAIN: ${PR_DOMAIN}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data
+    depends_on:
+      - signal
+
+  coturn:
+    image: coturn/coturn:4.6
+    restart: unless-stopped
+    network_mode: host   # TURN needs a wide UDP relay port range; host networking avoids NAT-in-NAT
+    volumes:
+      - ./turnserver.conf:/etc/coturn/turnserver.conf:ro
+    command: ["-c", "/etc/coturn/turnserver.conf"]
+
+volumes:
+  signal-data:
+  caddy-data:

@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Premiere Remote — browser test client</title>
+  <style>
+    :root { color-scheme: dark; }
+    body { margin: 0; padding: 12px; font: 14px system-ui, sans-serif; background: #141417; color: #ececf0; }
+    input, button { font: inherit; padding: 6px 10px; margin: 2px; border-radius: 6px; border: 1px solid #444; background: #222226; color: inherit; }
+    button { cursor: pointer; }
+    #video { width: 100%; max-height: 60vh; background: #000; display: block; margin: 8px 0; }
+    #log { font: 12px Consolas, monospace; white-space: pre-wrap; background: #0d0d10; padding: 8px; height: 220px; overflow: auto; }
+    .row { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; }
+    .muted { color: #9a9aa2; }
+  </style>
+</head>
+<body>
+  <h3>Premiere Remote — browser test client</h3>
+  <p class="muted">Development tool that speaks the same protocol as the Android app (pairing, signaling, WebRTC, ECDSA auth, commands). Not a product UI.</p>
+  <div class="row">
+    <input id="server" size="28" value="http://127.0.0.1:8787">
+    <input id="code" size="10" placeholder="8-digit code">
+    <button id="pair">Pair</button>
+    <button id="connect">Connect</button>
+    <span id="keyid" class="muted"></span>
+  </div>
+  <video id="video" autoplay playsinline muted></video>
+  <div class="row">
+    <button data-cmd="status">Status</button>
+    <button data-cmd="playPause">Play/Pause</button>
+    <button data-cmd="stepFrames" data-frames="-1">◀1</button>
+    <button data-cmd="stepFrames" data-frames="1">1▶</button>
+    <button data-cmd="addEdit">Split</button>
+    <button data-cmd="undo">Undo</button>
+    <button data-cmd="save">Save</button>
+    <button id="dup">Send same id twice</button>
+    <button id="click">Click centre</button>
+    <button id="stats">Stats</button>
+    <button id="unmute">Unmute audio</button>
+  </div>
+  <div id="log"></div>
+  <script src="client.js"></script>
+</body>
+</html>

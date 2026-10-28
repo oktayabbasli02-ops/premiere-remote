@@ -1,0 +1,12 @@
+{
+  "name": "premiere-remote-plugin-typecheck",
+  "private": true,
+  "description": "Type-checks premiere-plugin/main.js against Adobe's official Premiere UXP declarations, so no invented API can slip in.",
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json"
+  },
+  "devDependencies": {
+    "@adobe/premierepro": "26.5.0",
+    "typescript": "^5.9.3"
+  }
+}

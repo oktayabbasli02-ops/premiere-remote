@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+  <meta name="theme-color" content="#141417">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="PR Remote">
+  <title>Premiere Remote</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="icons/icon-180.png">
+  <link rel="icon" href="icons/icon-192.png">
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+  <!-- HOME -->
+  <section id="home" class="screen hidden">
+    <h1>Premiere Remote</h1>
+    <p class="muted">Your device key ID: <span id="homeKey" class="mono"></span></p>
+    <div id="hostList"></div>
+    <button id="toPair" class="secondary">Pair a PC</button>
+    <p id="installHint" class="hint hidden">Tip: Share → <b>Add to Home Screen</b> to install. Installed apps keep their keys; Safari may clear data of sites not opened for 7 days.</p>
+  </section>
+
+  <!-- PAIR -->
+  <section id="pair" class="screen hidden">
+    <h1>Pair with your PC</h1>
+    <p class="muted">On the PC: open the Premiere Remote panel → Enable remote access. Enter the 8-digit code shown there.</p>
+    <label>8-digit code
+      <input id="code" class="code" inputmode="numeric" autocomplete="one-time-code" maxlength="9" placeholder="0000 0000">
+    </label>
+    <label>This device's name
+      <input id="devName" maxlength="40">
+    </label>
+    <p class="warn">Key ID: <span id="pairKey" class="mono"></span> — the PC will show this; approve only if it matches.</p>
+    <div class="row">
+      <button id="doPair" class="primary">Pair</button>
+      <button id="cancelPair" class="text">Cancel</button>
+    </div>
+    <p id="pairStatus"></p>
+    <button id="openAndroid" class="secondary hidden">Open in the Android app instead</button>
+  </section>
+
+  <!-- SESSION -->
+  <section id="session" class="screen hidden">
+    <header class="bar">
+      <span id="chip" class="chip">CONNECTING</span>
+      <span id="title" class="title"></span>
+      <button id="mode" class="toggle">Touch</button>
+      <button id="statsBtn" class="text">Stats</button>
+      <button id="menuBtn" class="text">⋮</button>
+    </header>
+    <div id="stage">
+      <video id="video" playsinline autoplay muted></video>
+      <div id="overlay" class="overlay"></div>
+      <div id="banners" class="banners"></div>
+      <pre id="stats" class="stats hidden"></pre>
+      <div id="ack" class="ack hidden"></div>
+      <button id="sound" class="sound">🔇 Tap for sound</button>
+    </div>
+    <div id="controls" class="controls">
+      <div id="buttons" class="buttons"></div>
+      <div class="jogcol">
+        <canvas id="jog" class="jog"></canvas>
+        <button id="precision" class="text">Precision</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- sheets -->
+  <div id="menu" class="sheet hidden">
+    <button data-capture="window">Capture: Premiere window</button>
+    <button data-capture="display">Capture: whole display (dialogs)</button>
+    <button data-quality="auto">Quality: Auto</button>
+    <button data-quality="saver">540p (mobile data)</button>
+    <button data-quality="responsive">720p30</button>
+    <button data-quality="balanced">1080p30</button>
+    <button data-quality="quality">1080p60</button>
+    <button id="resetZoom">Reset zoom</button>
+    <button id="toggleControls">Hide edit controls</button>
+    <button id="openKeyboard">Keyboard</button>
+    <button id="disconnect" class="danger">Disconnect</button>
+    <button id="closeMenu" class="text">Close</button>
+  </div>
+
+  <div id="keyboard" class="sheet hidden">
+    <textarea id="kbText" rows="2" maxlength="500" placeholder="Text to type into Premiere"></textarea>
+    <div class="keys">
+      <button data-combo="Escape">Esc</button><button data-combo="Tab">Tab</button><button data-combo="Enter">Enter</button>
+      <button data-combo="Backspace">⌫</button><button data-combo="Delete">Del</button><button data-combo="Left">←</button>
+      <button data-combo="Right">→</button><button data-combo="Up">↑</button><button data-combo="Down">↓</button>
+      <button data-combo="Ctrl+A">Ctrl+A</button><button data-combo="Ctrl+C">Ctrl+C</button><button data-combo="Ctrl+V">Ctrl+V</button>
+    </div>
+    <div class="row">
+      <button id="kbSend" class="primary">Type</button>
+      <button id="kbClose" class="text">Close</button>
+    </div>
+  </div>
+
+  <div id="mute" class="sheet hidden">
+    <div class="row" id="muteKind"><button data-kind="audio" class="on">Audio</button><button data-kind="video">Video</button></div>
+    <div class="keys" id="muteTracks"></div>
+    <div class="row">
+      <button id="muteOn" class="primary">Mute</button>
+      <button id="muteOff" class="secondary">Unmute</button>
+      <button id="muteClose" class="text">Cancel</button>
+    </div>
+  </div>
+
+  <div id="dialog" class="sheet hidden"><p id="dialogText"></p><button id="dialogOk" class="primary">OK</button></div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

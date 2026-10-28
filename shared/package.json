@@ -1,0 +1,22 @@
+{
+  "name": "@premiere-remote/shared",
+  "version": "0.1.0",
+  "description": "Protocol, command catalogue, coordinate mapping and auth helpers shared by the Premiere Remote server and Windows companion.",
+  "type": "module",
+  "license": "MIT",
+  "exports": {
+    ".": "./src/index.js",
+    "./protocol": "./src/protocol.js",
+    "./commands": "./src/commands.js",
+    "./mapping": "./src/mapping.js",
+    "./journal": "./src/journal.js",
+    "./auth": "./src/auth.js",
+    "./redact": "./src/redact.js"
+  },
+  "scripts": {
+    "test": "node --test test/"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

@@ -1,0 +1,16 @@
+node_modules/
+dist/
+data/
+.env
+*.log
+android/.gradle/
+android/build/
+android/app/build/
+android/local.properties
+*.keystore
+*.jks
+*.ccx
+ios/PremiereRemote.xcodeproj/
+ios/PremiereRemote/Info.plist
+ios/*.xcresult
+ios/xcodebuild.log

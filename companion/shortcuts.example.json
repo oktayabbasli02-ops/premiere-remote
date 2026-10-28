@@ -1,0 +1,16 @@
+{
+  "id": "my-profile",
+  "name": "My Premiere shortcuts",
+  "shortcuts": {
+    "focusTimeline": "Shift+3",
+    "playPause": "Space",
+    "addEdit": "Ctrl+K",
+    "selectClipAtPlayhead": "D",
+    "rippleTrimPrevToPlayhead": "Q",
+    "rippleTrimNextToPlayhead": "W",
+    "zoomIn": "=",
+    "zoomOut": "-",
+    "undo": "Ctrl+Z",
+    "redo": "Ctrl+Shift+Z"
+  }
+}
