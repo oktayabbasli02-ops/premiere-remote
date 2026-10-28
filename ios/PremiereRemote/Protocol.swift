@@ -36,8 +36,9 @@ enum PRProtocol {
     }
 
     static func extractFingerprint(_ sdp: String) -> String? {
-        for raw in sdp.split(whereSeparator: { $0 == "\n" || $0 == "\r" }) {
-            let line = String(raw)
+        // SDP lines end in CRLF, and Swift treats "\r\n" as ONE Character, so split on Unicode
+        // scalars (CharacterSet.newlines) rather than comparing Characters to "\r" / "\n".
+        for line in sdp.components(separatedBy: .newlines) {
             let prefix = "a=fingerprint:sha-256 "
             guard line.hasPrefix(prefix) else { continue }
             let fp = line.dropFirst(prefix.count).trimmingCharacters(in: .whitespaces)
