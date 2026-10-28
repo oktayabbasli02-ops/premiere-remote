@@ -62,7 +62,8 @@ Nəticə fayllarını (`.xcresult`, build logu) Actions səhifəsindən yükləm
 | PWA brauzer pəncərəsində 375×812 (toxunma emulyasiyası): QR linki ilə kodun doldurulması → pairing → PC-də təsdiq (açar ID eyni) → **canlı video** → toxunma koordinatı (0.499, 0.500) hosta çatdı → əmrlərə dürüst cavablar | ✅ (Chromium mühərriki) |
 | **WebKit (Safari mühərriki)**, Playwright iPhone 15 Pro profili: PWA açılır, WebCrypto ECDSA açarı IndexedDB-də saxlanır, açar ID PC ilə eynidir, pairing PC-də təsdiqləndi; iPhone və iPad tərtibatı ekrana sığır | ✅ |
 | WebKit-də video (WebRTC) | ❌ Windows üçün WebKit qurulmasında `RTCPeerConnection` yoxdur — burada sınana bilmir. Tətbiq bu halda aydın mesaj göstərir. |
-| **Native iOS kodu** | ❌ Kompilyasiya olunmayıb: iOS SDK/Xcode yalnız macOS-dadır. İlk build-də (Mac və ya GitHub Actions) kiçik kompilyasiya xətaları ola bilər. |
+| **Native iOS kodu — GitHub Actions, macOS + iPhone Simulator** | ✅ Xətasız kompilyasiya olundu; **12/12 unit test keçdi** (`CoordinateMapperTests`, `ProtocolTests`). İlk qaçışda bir test real xəta tapdı: Swift `"\r\n"`-i bir simvol sayır və SDP fingerprint-i tapılmırdı — real iPhone-da hər qoşulma "Security check failed" verərdi. Düzəldildi. |
+| Native tətbiq UI-ı / real WebRTC sessiyası Simulator-da | ❌ Avtomatlaşdırılmayıb (yalnız unit testlər) |
 | Real iPhone/iPad Safari | ❌ Sınanmayıb (HTTPS server lazımdır) |
 
 Testdə tapılıb düzəldilən xətalar:

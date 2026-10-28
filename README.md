@@ -51,7 +51,7 @@ Telefon ──WSS──► Signaling server ◄──WSS── Companion (PC) �
 | **Emulyatordan real əmrlər** (Premiere pəncərəsi tutulub yayımlanır): 1▶ ×3 → playhead tam 3 kadr (0.125125 s, Premiere `00:00:00:03`) "done" · **Split** → V1/A1 3-cü kadrda kəsildi, klip sayı ilə doğrulandı "done" · **Undo** → kəsik geri qayıtdı ("sent — cannot be verified") · **Save** → `.prproj` faylı yeniləndi "done" · **Play/Pause** → oynadı və dayandı, playhead ilə doğrulandı | ✅ |
 | Premiere öne gətirilə bilmədikdə klaviatura əmri **göndərilmir**, telefonda "Could not bring Premiere to the foreground" | ✅ |
 | **iPhone/iPad PWA** (375×812 toxunma emulyasiyası): QR linki → pairing → təsdiq → canlı video → toxunma və əmrlər; **WebKit (Safari mühərriki)** iPhone profilində pairing və tərtibat. Ətraflı: [docs/IOS.md](docs/IOS.md) | ✅ (WebKit-də video sınanmayıb — Windows WebKit-də WebRTC yoxdur) |
-| Native iOS (Swift) | ❌ Mac olmadığı üçün kompilyasiya olunmayıb; `.github/workflows/ios.yml` iPhone Simulator-da qurub test edir |
+| **Native iOS (Swift)** — GitHub Actions (macOS, iPhone Simulator) | ✅ kompilyasiya olunur, 12/12 unit test keçir; real iPhone-da və UI səviyyəsində sınanmayıb |
 
 ## Nə sınanmayıb / məlum problemlər
 
